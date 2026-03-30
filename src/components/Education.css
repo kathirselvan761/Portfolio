@@ -1,0 +1,266 @@
+.education-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 3rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 14px;
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-primary-light),
+    var(--color-bg-secondary)
+  );
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.4);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -3rem;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-bg-primary);
+  border: 2px solid var(--color-primary-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+  background: var(--color-primary);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+}
+
+.dot-icon {
+  color: var(--color-accent);
+}
+
+.timeline-item:hover .dot-icon {
+  color: white;
+}
+
+.timeline-content {
+  padding: 2rem;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 35, 0.7),
+    rgba(15, 15, 30, 0.85)
+  );
+}
+
+.timeline-content::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  background: rgba(20, 20, 35, 0.8);
+  transform: rotate(45deg);
+  border-left: 1px solid var(--color-glass-border);
+  border-bottom: 1px solid var(--color-glass-border);
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+}
+
+.degree {
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  line-height: 1.3;
+}
+
+.period-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(138, 43, 226, 0.15);
+  color: var(--color-primary-light);
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+.institution {
+  font-size: 1.15rem;
+  color: var(--color-accent);
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+.edu-description {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1rem;
+}
+
+.resume-section {
+  display: flex;
+  justify-content: center;
+}
+
+.resume-box {
+  text-align: center;
+  padding: 3rem 2rem;
+  max-width: 600px;
+  width: 100%;
+  border-top: 3px solid var(--color-primary);
+  background: linear-gradient(
+    180deg,
+    rgba(20, 20, 35, 0.9),
+    rgba(10, 10, 25, 0.8)
+  );
+}
+
+.resume-box h3 {
+  font-size: 1.8rem;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+
+.resume-box p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.resume-btn {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .timeline-header {
+    flex-direction: column;
+  }
+
+  .degree {
+    font-size: 1.3rem;
+  }
+
+  .timeline {
+    padding-left: 2rem;
+  }
+
+  .timeline-dot {
+    left: -2rem;
+    width: 24px;
+    height: 24px;
+  }
+
+  .timeline-content {
+    padding: 1.5rem;
+  }
+
+  .institution {
+    font-size: 1rem;
+  }
+
+  .edu-description {
+    font-size: 0.9rem;
+  }
+
+  .resume-box {
+    padding: 2rem 1.5rem;
+  }
+
+  .resume-box h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .education-container {
+    gap: 2.5rem;
+  }
+
+  .timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-dot {
+    left: -1.5rem;
+    width: 20px;
+    height: 20px;
+  }
+
+  .timeline-content {
+    padding: 1.2rem;
+  }
+
+  .degree {
+    font-size: 1.1rem;
+  }
+
+  .institution {
+    font-size: 0.95rem;
+  }
+
+  .location {
+    font-size: 0.85rem;
+  }
+
+  .edu-description {
+    font-size: 0.85rem;
+  }
+
+  .resume-box {
+    padding: 1.5rem 1rem;
+  }
+
+  .resume-box h3 {
+    font-size: 1.3rem;
+  }
+
+  .resume-box p {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,70 @@
+=================================================
+PERSONAL PORTFOLIO WEBSITE - DOCUMENTATION
+=================================================
+
+1. PROJECT OVERVIEW
+-------------------
+This project is a modern, premium, fully responsive personal portfolio website designed for a Final Year BCA Student and MERN Stack Developer. It features a dark theme, glassmorphism UI, smooth animations, gradient accents, and beautiful project cards. The application is built as a single-page application (SPA).
+
+2. TECHNOLOGIES USED
+--------------------
+- Frontend Framework: React.js (via Vite)
+- Styling: Custom Modern CSS (Variables, Flexbox, Grid, Glassmorphism)
+- Animations: Framer Motion
+- Navigation/Scrolling: React Scroll
+- Icons: Devicon (for tech stack) & React Icons (for UI icons like Github, Linkedin, Mail)
+
+3. PROJECT STRUCTURE
+--------------------
+The source code is primarily housed within the `src` directory with a component-based architecture:
+
+c:\Users\ELCOT\Desktop\Portfoilo
+|-- index.html           # Main HTML entry point
+|-- package.json         # Project metadata and dependencies
+|-- vite.config.js       # Vite configuration
+|-- src/
+    |-- main.jsx         # React application entry point
+    |-- App.jsx          # Main application component routing all sections
+    |-- App.css          # Global and common animations/styles
+    |-- index.css        # Core stylesheet with CSS variables and glassmorphism utilities
+    |-- components/
+        |-- Navbar.jsx & .css       # Sticky navigation bar with mobile toggle
+        |-- Hero.jsx & .css         # Introduction, animated blobs, profile placeholder
+        |-- About.jsx & .css        # Objective, background, and interest cards
+        |-- Skills.jsx & .css       # Categorized skills grid with Devicon icons
+        |-- Projects.jsx & .css     # Gallery of MERN/Full-stack project cards
+        |-- Education.jsx & .css    # Academic timeline and resume download
+        |-- Achievements.jsx & .css # Soft skills and unique highlights
+        |-- Contact.jsx & .css      # Contact form and social links
+        |-- Footer.jsx & .css       # Copyright info and 'Back to top' button
+        |-- LoadingScreen.jsx       # Initial loading animation sequence
+
+4. HOW TO RUN THE PROJECT LOCALLY
+---------------------------------
+Step 1: Open your terminal or command prompt.
+Step 2: Navigate to the project directory:
+        cd c:\Users\ELCOT\Desktop\Portfoilo
+Step 3: Install all Node dependencies (if not already installed):
+        npm install
+Step 4: Start the local development server:
+        npm run dev
+Step 5: Open your web browser and go to the local URL provided in the terminal (usually http://localhost:5173).
+
+5. HOW TO CUSTOMIZE DETAILS
+---------------------------
+- Profile details (Name, Bio, Resume Link): Edit `src/components/Hero.jsx`.
+- Profile image: Place your photo in the `public` folder and update the image tag in `Hero.jsx`.
+- Resume PDF: Place your actual resume in the `public` folder (e.g., `resume.pdf`) and modify the download links in `Hero.jsx` and `Education.jsx`.
+- Skills: Update the arrays inside `src/components/Skills.jsx`.
+- Projects: Add your own projects and links inside `src/components/Projects.jsx`.
+- Contact Info: Modify your email, phone, and social links in `src/components/Contact.jsx`.
+
+6. DEPLOYMENT
+-------------
+To build the project for production, run:
+    npm run build
+This will output optimized, minified files in the `dist` folder, which can be deployed to Vercel, Netlify, GitHub Pages, or any static hosting platform.
+
+=================================================
+End of Documentation
+=================================================
