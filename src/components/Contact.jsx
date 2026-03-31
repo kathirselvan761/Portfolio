@@ -88,6 +88,54 @@ const Contact = () => {
               </div>
             </div>
           </motion.div>
+
+          <motion.div
+            className="contact-form glass-panel"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h3>Send Message</h3>
+            <form className="contact-form-element">
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder=" "
+                />
+                <label htmlFor="name">Full Name</label>
+              </div>
+
+              <div className="form-group">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder=" "
+                />
+                <label htmlFor="email">Email Address</label>
+              </div>
+
+              <div className="form-group">
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                  placeholder=" "
+                ></textarea>
+                <label htmlFor="message">Message</label>
+              </div>
+
+              <button type="submit" className="btn btn-primary submit-btn">
+                Send Message
+              </button>
+            </form>
+          </motion.div>
         </div>
       </div>
     </section>
