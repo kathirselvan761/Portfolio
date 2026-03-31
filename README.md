@@ -1,53 +1,112 @@
-# Portfolio with Express.js Backend
+# Portfolio
 
-A modern, responsive portfolio website with a full-stack contact form system using Express.js, Node.js, and MongoDB.
+A modern, responsive portfolio website built with React and Vite.
 
 ## 🚀 Features
 
-### Frontend
 - **React + Vite**: Modern, fast development experience
 - **Responsive Design**: Mobile-first approach with desktop optimization
 - **Framer Motion**: Smooth animations and transitions
-- **Contact Form**: Real-time validation and submission feedback
+- **Contact Form**: Interactive contact form with validation
 - **Modern UI**: Glassmorphism design with dark theme
-
-### Backend
-- **Express.js**: Robust REST API server
-- **MongoDB**: NoSQL database for contact storage
-- **Security**: Rate limiting, CORS, input validation, helmet
-- **Admin Dashboard**: Web interface for managing submissions
-- **Authentication**: Basic auth for admin access
-- **Statistics**: Real-time metrics and analytics
 
 ## 📋 Prerequisites
 
 - **Node.js** (v18 or higher)
-- **MongoDB Atlas** account (free tier available)
-- **Git** for version control
+- **npm** or **yarn**
 
 ## 🛠️ Quick Start
 
-### 1. Clone and Install
-
 ```bash
+# Clone the repository
 git clone <your-repo-url>
 cd portfolio
+
+# Install dependencies
 npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-### 2. Set up Backend
+## 📁 Project Structure
+
+```
+portfolio/
+├── src/
+│   ├── components/         # React components
+│   ├── App.jsx            # Main app component
+│   └── main.jsx           # App entry point
+├── public/                # Static assets
+├── index.html            # HTML template
+├── package.json          # Dependencies and scripts
+├── vite.config.js        # Vite configuration
+└── README.md             # This file
+```
+
+## 🎨 Customization
+
+### Content
+- **Personal info**: Update components in `src/components/`
+- **Contact details**: Modify `src/components/Contact.jsx`
+- **Portfolio items**: Edit `src/components/Projects.jsx`
+
+### Styling
+- **Global styles**: `src/index.css`
+- **Component styles**: `src/components/*.css`
+
+## 🚀 Deployment
+
+### Netlify (Recommended)
+1. Push code to GitHub
+2. Connect repository to Netlify
+3. Deploy automatically
+
+### Other Platforms
+- **Vercel**: Connect GitHub repo and deploy
+- **GitHub Pages**: Use GitHub Actions for deployment
+- **Any static hosting**: Build with `npm run build` and upload `dist` folder
+
+## 🛠️ Development
 
 ```bash
-cd backend
+# Install dependencies
 npm install
-cp .env.example .env
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Run linting
+npm run lint
 ```
 
-Edit `backend/.env` with your MongoDB connection:
-```env
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
-ADMIN_PASSWORD=your_secure_password
-```
+## 📝 License
+
+MIT License - feel free to use this project for your portfolio!
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature-name`
+3. Make changes and test thoroughly
+4. Commit: `git commit -m 'Add feature'`
+5. Push: `git push origin feature-name`
+6. Create Pull Request
+
+---
+
+**Happy coding! 🎉**
+
+Built with ❤️ using React and Vite
 
 ### 3. Set up MongoDB Atlas
 

@@ -34,37 +34,13 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
-      const response = await fetch(`${apiUrl}/api/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus("success");
-        setSubmitMessage(data.message || "Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setSubmitStatus("error");
-        setSubmitMessage(
-          data.error || "Failed to send message. Please try again.",
-        );
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setSubmitStatus("error");
-      setSubmitMessage(
-        "Network error. Please check your connection and try again.",
-      );
-    } finally {
+    // Simulate form submission
+    setTimeout(() => {
+      setSubmitStatus("success");
+      setSubmitMessage("Thank you for your message! I'll get back to you soon.");
+      setFormData({ name: "", email: "", message: "" });
       setIsSubmitting(false);
-    }
+    }, 1000);
   };
 
   return (
