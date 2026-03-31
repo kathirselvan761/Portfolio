@@ -1,24 +1,31 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import "./Contact.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
-  const [submitMessage, setSubmitMessage] = useState('');
+  const [submitMessage, setSubmitMessage] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -28,10 +35,11 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('/.netlify/functions/contact', {
-        method: 'POST',
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -39,17 +47,21 @@ const Contact = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setSubmitStatus('success');
-        setSubmitMessage(data.message || 'Message sent successfully!');
-        setFormData({ name: '', email: '', message: '' });
+        setSubmitStatus("success");
+        setSubmitMessage(data.message || "Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
       } else {
-        setSubmitStatus('error');
-        setSubmitMessage(data.error || 'Failed to send message. Please try again.');
+        setSubmitStatus("error");
+        setSubmitMessage(
+          data.error || "Failed to send message. Please try again.",
+        );
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-      setSubmitMessage('Network error. Please check your connection and try again.');
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+      setSubmitMessage(
+        "Network error. Please check your connection and try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -191,9 +203,11 @@ const Contact = () => {
               </div>
 
               {submitStatus && (
-                <div className={`submit-message ${submitStatus === 'success' ? 'success' : 'error'}`}>
+                <div
+                  className={`submit-message ${submitStatus === "success" ? "success" : "error"}`}
+                >
                   <div className="message-content">
-                    {submitStatus === 'success' ? (
+                    {submitStatus === "success" ? (
                       <CheckCircle size={20} />
                     ) : (
                       <AlertCircle size={20} />

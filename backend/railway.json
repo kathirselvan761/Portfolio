@@ -1,0 +1,9 @@
+# Railway Deployment Configuration
+
+# This file tells Railway how to deploy your backend
+# Place this in your backend directory
+
+# Railway will automatically detect this as a Node.js app
+# and use the scripts from package.json
+
+# For Railway, you only need to set environment variables in their dashboard

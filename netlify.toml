@@ -1,7 +1,6 @@
 [build]
   publish = "dist"
   command = "npm run build"
-  functions = "netlify/functions"
 
 [[redirects]]
   from = "/*"
@@ -10,6 +9,4 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  MONGODB_URI = "your_mongodb_connection_string_here"
-  DB_NAME = "portfolio"
-  ADMIN_PASSWORD = "your_secure_admin_password_here"
+  VITE_API_URL = "https://your-backend-url.com"
