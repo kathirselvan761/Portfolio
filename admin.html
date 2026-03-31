@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin - Contact Submissions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .filters {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .filter-group select, .filter-group input {
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .contacts-container {
+            padding: 0;
+        }
+
+        .contact-card {
+            border-bottom: 1px solid #e9ecef;
+            padding: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .contact-card:hover {
+            background-color: #f8f9fa;
+        }
+
+        .contact-card.unread {
+            border-left: 4px solid #007bff;
+        }
+
+        .contact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .contact-info h3 {
+            color: #495057;
+            margin-bottom: 5px;
+        }
+
+        .contact-email {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .contact-meta {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        .contact-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-unread {
+            background: #007bff;
+            color: white;
+        }
+
+        .status-read {
+            background: #28a745;
+            color: white;
+        }
+
+        .contact-message {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #007bff;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px;
+            border: 1px solid #f5c6cb;
+        }
+
+        .pagination {
+            padding: 20px;
+            text-align: center;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .pagination button {
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: 1px solid #007bff;
+            background: white;
+            color: #007bff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: #007bff;
+            color: white;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .contact-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .contact-meta {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Contact Form Submissions</h1>
+            <p>Manage and view messages from your portfolio visitors</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="total-count">-</div>
+                <div class="stat-label">Total Submissions</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="unread-count">-</div>
+                <div class="stat-label">Unread Messages</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="today-count">-</div>
+                <div class="stat-label">Today</div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label for="status-filter">Status:</label>
+                <select id="status-filter">
+                    <option value="">All</option>
+                    <option value="unread">Unread</option>
+                    <option value="read">Read</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="limit-select">Show:</label>
+                <select id="limit-select">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50" selected>50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <button id="refresh-btn" style="padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">🔄 Refresh</button>
+        </div>
+
+        <div id="error-message" class="error" style="display: none;"></div>
+
+        <div class="contacts-container">
+            <div id="loading" class="loading">Loading submissions...</div>
+        </div>
+
+        <div id="pagination" class="pagination" style="display: none;">
+            <button id="prev-btn">Previous</button>
+            <span id="page-info">Page 1</span>
+            <button id="next-btn">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        let currentLimit = 50;
+        let currentStatus = '';
+        let totalContacts = 0;
+
+        // Load credentials from URL parameters or prompt
+        function getCredentials() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('user') || 'admin';
+            const password = urlParams.get('pass');
+
+            if (!password) {
+                // Prompt for password if not in URL
+                const enteredPassword = prompt('Enter admin password:');
+                if (!enteredPassword) {
+                    alert('Password required to access admin panel');
+                    window.location.href = '/';
+                    return null;
+                }
+                return { username, password: enteredPassword };
+            }
+
+            return { username, password };
+        }
+
+        async function loadContacts(page = 0, limit = currentLimit, status = currentStatus) {
+            const credentials = getCredentials();
+            if (!credentials) return;
+
+            const loading = document.getElementById('loading');
+            const errorDiv = document.getElementById('error-message');
+            const container = document.querySelector('.contacts-container');
+
+            loading.style.display = 'block';
+            errorDiv.style.display = 'none';
+
+            try {
+                const params = new URLSearchParams({
+                    limit: limit.toString(),
+                    skip: (page * limit).toString()
+                });
+
+                if (status) {
+                    params.append('status', status);
+                }
+
+                const response = await fetch(`/.netlify/functions/get-contacts?${params}`, {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+                    }
+                });
+
+                if (response.status === 401) {
+                    alert('Invalid credentials. Access denied.');
+                    window.location.href = '/';
+                    return;
+                }
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    displayContacts(data.contacts);
+                    updatePagination(data.pagination, page);
+                    updateStats(data.contacts);
+                } else {
+                    throw new Error(data.error || 'Failed to load contacts');
+                }
+
+            } catch (error) {
+                console.error('Error loading contacts:', error);
+                errorDiv.textContent = `Error: ${error.message}`;
+                errorDiv.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function displayContacts(contacts) {
+            const container = document.querySelector('.contacts-container');
+            const loading = document.getElementById('loading');
+
+            // Clear existing content except loading
+            const cards = container.querySelectorAll('.contact-card');
+            cards.forEach(card => card.remove());
+
+            if (contacts.length === 0) {
+                container.innerHTML = '<div class="loading">No submissions found.</div>';
+                return;
+            }
+
+            contacts.forEach(contact => {
+                const card = document.createElement('div');
+                card.className = `contact-card ${contact.status === 'unread' ? 'unread' : ''}`;
+
+                const date = new Date(contact.timestamp).toLocaleString();
+
+                card.innerHTML = `
+                    <div class="contact-header">
+                        <div class="contact-info">
+                            <h3>${escapeHtml(contact.name)}</h3>
+                            <div class="contact-email">${escapeHtml(contact.email)}</div>
+                        </div>
+                        <div class="contact-meta">
+                            <div class="contact-status status-${contact.status}">${contact.status}</div>
+                            <div>${date}</div>
+                        </div>
+                    </div>
+                    <div class="contact-message">${escapeHtml(contact.message)}</div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function updatePagination(pagination, currentPageNum) {
+            const paginationDiv = document.getElementById('pagination');
+            const pageInfo = document.getElementById('page-info');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (pagination.total <= pagination.limit) {
+                paginationDiv.style.display = 'none';
+                return;
+            }
+
+            paginationDiv.style.display = 'block';
+            pageInfo.textContent = `Page ${currentPageNum + 1} (${pagination.total} total)`;
+
+            prevBtn.disabled = currentPageNum === 0;
+            nextBtn.disabled = !pagination.hasMore;
+        }
+
+        function updateStats(contacts) {
+            const totalCount = document.getElementById('total-count');
+            const unreadCount = document.getElementById('unread-count');
+            const todayCount = document.getElementById('today-count');
+
+            // These would need to be calculated from the full dataset
+            // For now, showing basic counts from current page
+            totalCount.textContent = contacts.length;
+            unreadCount.textContent = contacts.filter(c => c.status === 'unread').length;
+
+            // Count today's submissions
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const todaySubmissions = contacts.filter(c => {
+                const contactDate = new Date(c.timestamp);
+                contactDate.setHours(0, 0, 0, 0);
+                return contactDate.getTime() === today.getTime();
+            });
+            todayCount.textContent = todaySubmissions.length;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Event listeners
+        document.getElementById('status-filter').addEventListener('change', (e) => {
+            currentStatus = e.target.value;
+            currentPage = 0;
+            loadContacts(currentPage, currentLimit, currentStatus);
+        });
+
+        document.getElementById('limit-select').addEventListener('change', (e) => {
+            currentLimit = parseInt(e.target.value);
+            currentPage = 0;
+            loadContacts(currentPage, currentLimit, currentStatus);
+        });
+
+        document.getElementById('refresh-btn').addEventListener('click', () => {
+            loadContacts(currentPage, currentLimit, currentStatus);
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                loadContacts(currentPage, currentLimit, currentStatus);
+            }
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            currentPage++;
+            loadContacts(currentPage, currentLimit, currentStatus);
+        });
+
+        // Load initial data
+        loadContacts();
+    </script>
+</body>
+</html>
