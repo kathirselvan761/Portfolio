@@ -1,48 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  CheckCircle,
-  AlertCircle,
-} from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import "./Contact.css";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
-  const [submitMessage, setSubmitMessage] = useState("");
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitStatus("success");
-      setSubmitMessage("Thank you for your message! I'll get back to you soon.");
-      setFormData({ name: "", email: "", message: "" });
-      setIsSubmitting(false);
-    }, 1000);
-  };
-
   return (
     <section id="contact" className="section">
       <div className="container">
@@ -63,6 +25,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
+            style={{ width: '100%', maxWidth: '600px', margin: '0 auto' }}
           >
             <h3>Let's Connect</h3>
             <p>
@@ -125,92 +88,6 @@ const Contact = () => {
                 </a>
               </div>
             </div>
-          </motion.div>
-
-          <motion.div
-            className="contact-form glass-panel"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h3>Send Message</h3>
-            <form className="contact-form-element" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  placeholder=" "
-                  disabled={isSubmitting}
-                />
-                <label htmlFor="name">Full Name</label>
-              </div>
-
-              <div className="form-group">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  placeholder=" "
-                  disabled={isSubmitting}
-                />
-                <label htmlFor="email">Email Address</label>
-              </div>
-
-              <div className="form-group">
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows="5"
-                  required
-                  placeholder=" "
-                  disabled={isSubmitting}
-                ></textarea>
-                <label htmlFor="message">Message</label>
-              </div>
-
-              {submitStatus && (
-                <div
-                  className={`submit-message ${submitStatus === "success" ? "success" : "error"}`}
-                >
-                  <div className="message-content">
-                    {submitStatus === "success" ? (
-                      <CheckCircle size={20} />
-                    ) : (
-                      <AlertCircle size={20} />
-                    )}
-                    <span>{submitMessage}</span>
-                  </div>
-                </div>
-              )}
-
-              <button
-                type="submit"
-                className="btn btn-primary submit-btn"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="spinner"></div>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send size={18} />
-                    Send Message
-                  </>
-                )}
-              </button>
-            </form>
           </motion.div>
         </div>
       </div>
