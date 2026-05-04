@@ -9,6 +9,8 @@ import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
+import CustomCursor from './components/CustomCursor';
+import AnimatedBackground from './components/AnimatedBackground';
 import './App.css';
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
 
   return (
     <div className="app-container">
+      <AnimatedBackground />
+      <CustomCursor />
       <Navbar />
       <main>
         <Hero />

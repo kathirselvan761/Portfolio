@@ -79,7 +79,7 @@ const Contact = () => {
                   <FaLinkedin size={22} />
                 </a>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/kathirselvan761"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-icon"

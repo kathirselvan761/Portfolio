@@ -185,18 +185,38 @@
 }
 
 .react-badge {
-  top: 10%;
-  left: 0;
-  transform: translateX(-50%);
+  top: 5%;
+  left: -15%;
   color: #61dafb;
+  animation-delay: 0s;
 }
 
 .node-badge {
-  bottom: 15%;
-  right: 0;
-  transform: translateX(50%);
+  bottom: 5%;
+  left: -5%;
   color: #339933;
   animation-delay: -1.5s;
+}
+
+.mongo-badge {
+  top: 15%;
+  right: -20%;
+  color: #47A248;
+  animation-delay: -0.8s;
+}
+
+.mysql-badge {
+  top: 50%;
+  left: -25%;
+  color: #4479A1;
+  animation-delay: -2.2s;
+}
+
+.php-badge {
+  bottom: 15%;
+  right: -15%;
+  color: #777BB4;
+  animation-delay: -3.1s;
 }
 
 @keyframes rotate {

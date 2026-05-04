@@ -42,8 +42,8 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Final Year BCA Student <span className="text-gradient">|</span> MERN
-            Stack Developer
+             <span className="text-gradient">|</span>Full-Stack Developer
+            
           </motion.h2>
 
           <motion.p
@@ -69,7 +69,7 @@ const Hero = () => {
               </button>
             </Link>
             <a
-              href="/img/KATHIR Resume.pdf"
+              href="/img/Resume.pdf"
               download
               className="btn btn-outline"
             >
@@ -108,6 +108,18 @@ const Hero = () => {
           <div className="floating-card glass-panel node-badge">
             <i className="devicon-nodejs-plain colored"></i>
             <span>Node.js</span>
+          </div>
+          <div className="floating-card glass-panel mongo-badge">
+            <i className="devicon-mongodb-plain colored"></i>
+            <span>MongoDB</span>
+          </div>
+          <div className="floating-card glass-panel mysql-badge">
+            <i className="devicon-mysql-plain colored"></i>
+            <span>MySQL</span>
+          </div>
+          <div className="floating-card glass-panel php-badge">
+            <i className="devicon-php-plain colored"></i>
+            <span>PHP</span>
           </div>
         </motion.div>
       </div>

@@ -75,7 +75,7 @@ const Education = () => {
             <div className="resume-box glass-panel">
               <h3>Get My Full Resume</h3>
               <p>Download my comprehensive resume to dive deeper into my academic trajectory, complete project list, and technical proficiencies.</p>
-              <a href="/img/KATHIR Resume.pdf" download className="btn btn-primary resume-btn">
+              <a href="\img\Resume.pdf" download className="btn btn-primary resume-btn">
                 Download PDF Resume <Download size={20} />
               </a>
             </div>

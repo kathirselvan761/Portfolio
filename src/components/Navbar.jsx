@@ -28,12 +28,6 @@ const Navbar = () => {
   return (
     <header className={`navbar ${scrolled ? 'scrolled glass-panel' : ''}`}>
       <div className="container nav-container">
-        <div className="logo cursor-pointer">
-          <Link to="hero" smooth={true} duration={500} offset={-80}>
-            <span className="text-gradient">Portfolio.</span>
-          </Link>
-        </div>
-
         {/* Desktop Menu */}
         <nav className="desktop-menu">
           <ul>
