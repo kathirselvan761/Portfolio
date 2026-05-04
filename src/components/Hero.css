@@ -265,6 +265,28 @@
     width: 280px;
     height: 380px;
   }
+  
+  /* Bring badges closer on tablet */
+  .react-badge {
+    top: 0%;
+    left: -5%;
+  }
+  .node-badge {
+    bottom: 0%;
+    left: 0%;
+  }
+  .mongo-badge {
+    top: 10%;
+    right: -10%;
+  }
+  .mysql-badge {
+    top: 45%;
+    left: -15%;
+  }
+  .php-badge {
+    bottom: 10%;
+    right: -5%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -301,7 +323,30 @@
   }
 
   .floating-card {
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+    gap: 0.3rem;
+  }
+  
+  /* Pull badges tight to the image on mobile to avoid overflow cutoffs */
+  .react-badge {
+    top: -5%;
+    left: 0%;
+  }
+  .node-badge {
+    bottom: -5%;
+    left: 5%;
+  }
+  .mongo-badge {
+    top: 5%;
+    right: 0%;
+  }
+  .mysql-badge {
+    top: 50%;
+    left: -5%;
+  }
+  .php-badge {
+    bottom: 5%;
+    right: 0%;
   }
 }
