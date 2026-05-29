@@ -71,7 +71,7 @@ const Contact = () => {
               <h4>Find me on</h4>
               <div className="social-links">
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/kathirselvan-v-548811314/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-icon"
