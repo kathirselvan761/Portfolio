@@ -18,7 +18,8 @@ const Skills = () => {
       title: "Backend Development",
       skills: [
         { name: "Node.js", icon: "devicon-nodejs-plain colored" },
-        { name: "Express.js", icon: "devicon-express-original" }, // express looks better without colored if background is dark, or use colored
+        { name: "Express.js", icon: "devicon-express-original" }, 
+        {name:"php", icon:"devicon-php-plain colored"},
       ]
     },
     {
@@ -29,14 +30,28 @@ const Skills = () => {
       ]
     },
     {
-      title: "Other Tools & Tech",
+      title: "Technologies",
       skills: [
         { name: "Git", icon: "devicon-git-plain colored" },
-        { name: "GitHub", icon: "devicon-github-original" },
-        { name: "REST API", icon: "devicon-nodejs-plain colored" }, // Placeholder icon for REST
-        { name: "JWT Auth", icon: "devicon-json-plain colored" }, // Placeholder icon for JWT
+        { name: "REST API", icon: "devicon-nodejs-plain colored" }, 
+        { name: "JWT Auth", icon: "devicon-json-plain colored" },
       ]
-    }
+    },
+    { 
+    title: "Tools",
+    skills: [
+      { name: "GitHub", icon: "devicon-github-original" },
+      { name: "MS Office", icon: "devicon-msoffice-plain" },
+      { name: "canva", icon: "devicon-canva-plain"},
+      {name: "VS", icon: "devicon-vscode-plain"},
+      {name: "Netlify", icon: "devicon-netlify-plain"},
+      {name: "Render", icon: "devicon-render-original"},
+      {name: "vercel", icon: "devicon-vercel-plain"},
+      
+
+    ]
+
+  },
   ];
 
   const containerVariants = {
