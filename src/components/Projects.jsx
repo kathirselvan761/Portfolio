@@ -93,6 +93,15 @@ const Projects = () => {
                     <span key={idx} className="tech-badge">{tech}</span>
                   ))}
                 </div>
+
+                <div className="project-links-mobile">
+                  <a href={project.demo} target="_blank" rel="noopener noreferrer" className="mobile-link-btn demo-btn">
+                    Live Demo <ExternalLink size={16} />
+                  </a>
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="mobile-link-btn code-btn">
+                    Code <FaGithub size={16} />
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}

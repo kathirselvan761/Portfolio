@@ -1,14 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './CustomCursor.css';
 
 const CustomCursor = () => {
   const dotRef = useRef(null);
   const outlineRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     // Check if device supports hover (desktop)
-    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (!isDesktop) return;
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setIsDesktop(mediaQuery.matches);
+
+    if (!mediaQuery.matches) return;
 
     // We add a subtle trailing effect for the outline
     let mouseX = 0;
@@ -70,6 +73,8 @@ const CustomCursor = () => {
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
+
+  if (!isDesktop) return null;
 
   return (
     <>

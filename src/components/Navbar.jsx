@@ -16,6 +16,18 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+    return () => {
+      document.body.classList.remove('menu-open');
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { name: 'Home', to: 'hero' },
     { name: 'About', to: 'about' },
@@ -28,6 +40,20 @@ const Navbar = () => {
   return (
     <header className={`navbar ${scrolled ? 'scrolled glass-panel' : ''}`}>
       <div className="container nav-container">
+        {/* Logo */}
+        <div className="logo">
+          <Link
+            to="hero"
+            spy={true}
+            smooth={true}
+            offset={-80}
+            duration={500}
+            className="logo-link"
+          >
+            <span className="text-gradient">Portfolio.</span>
+          </Link>
+        </div>
+
         {/* Desktop Menu */}
         <nav className="desktop-menu">
           <ul>
@@ -76,6 +102,12 @@ const Navbar = () => {
           ))}
         </ul>
       </div>
+
+      {/* Mobile Menu Backdrop */}
+      <div 
+        className={`mobile-menu-backdrop ${mobileMenuOpen ? 'open' : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+      />
     </header>
   );
 };

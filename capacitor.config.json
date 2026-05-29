@@ -1,0 +1,6 @@
+{
+  "appId": "com.portfolio.app",
+  "appName": "Portfolio",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

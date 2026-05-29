@@ -84,6 +84,39 @@
   display: none;
 }
 
+.logo-link {
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Body Scroll Lock when menu open */
+body.menu-open {
+  overflow: hidden !important;
+  height: 100vh;
+  position: relative;
+}
+
+/* Backdrop overlay styling */
+.mobile-menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 5, 15, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 98;
+}
+
+.mobile-menu-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 @media (max-width: 768px) {
   .desktop-menu {
     display: none;
