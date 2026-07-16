@@ -45,7 +45,7 @@ const Skills = () => {
       { name: "canva", icon: "devicon-canva-plain"},
       {name: "VS", icon: "devicon-vscode-plain"},
       {name: "Netlify", icon: "devicon-netlify-plain"},
-      {name: "Render", icon: "devicon-render-original"},
+      {name: "Render", icon: "devicon-render-plain"},
       {name: "vercel", icon: "devicon-vercel-plain"},
       
 

@@ -10,6 +10,15 @@
   box-sizing: border-box;
 }
 
+/* Aurora WebGL background */
+.hero-aurora-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 /* Background animated blobs */
 .blob {
   position: absolute;
@@ -61,6 +70,8 @@
   justify-content: space-between;
   align-items: center;
   gap: 4rem;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content {
@@ -107,7 +118,152 @@
   gap: 1rem;
 }
 
+/* ── Hero Flip Card ──────────────────────────────── */
+.hero-flip-card {
+  width: 350px;
+  height: 450px;
+  perspective: 1200px;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.hero-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.9s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+  overflow: visible;
+}
+
+.hero-flip-card:hover .hero-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.hero-flip-front,
+.hero-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 30px;
+}
+
+.hero-flip-front {
+  /* pass-through — the inner image-container handles all styling */
+}
+
+.hero-flip-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(
+    145deg,
+    rgba(30, 10, 60, 0.92) 0%,
+    rgba(10, 10, 35, 0.97) 50%,
+    rgba(50, 20, 100, 0.88) 100%
+  );
+  border: 1px solid rgba(138, 43, 226, 0.4);
+  box-shadow:
+    0 0 40px rgba(106, 13, 173, 0.3),
+    inset 0 0 30px rgba(106, 13, 173, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.8rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Spinning accent border on back face */
+.hero-flip-back::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent, var(--color-primary), transparent 30%);
+  animation: rotate 4s linear infinite;
+  z-index: 0;
+}
+
+.hero-flip-back::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: linear-gradient(
+    145deg,
+    rgba(25, 10, 50, 0.97) 0%,
+    rgba(10, 10, 30, 0.99) 100%
+  );
+  border-radius: 26px;
+  z-index: 1;
+}
+
+.flip-about-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+.flip-about-greeting {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 0.6rem;
+}
+
+.flip-about-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0 0 0.3rem;
+  background: linear-gradient(to right, #ffffff, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.flip-about-role {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin: 0 0 1rem;
+  opacity: 0.85;
+}
+
+.flip-about-bio {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: rgba(200, 200, 230, 0.85);
+  margin: 0 0 1.2rem;
+}
+
+.flip-about-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.flip-about-highlights li {
+  font-size: 0.85rem;
+  color: rgba(210, 210, 240, 0.9);
+  padding: 0.4rem 0.8rem;
+  background: rgba(138, 43, 226, 0.1);
+  border-left: 2px solid var(--color-primary-light);
+  border-radius: 4px;
+}
+
 .hero-image-wrapper {
+
   flex: 1;
   position: relative;
   display: flex;
@@ -261,6 +417,11 @@
     margin-bottom: 3rem;
   }
 
+  .hero-flip-card {
+    width: 280px;
+    height: 380px;
+  }
+
   .image-container {
     width: 280px;
     height: 380px;
@@ -317,6 +478,11 @@
     font-size: 1rem;
   }
 
+  .hero-flip-card {
+    width: 250px;
+    height: 320px;
+  }
+
   .image-container {
     width: 250px;
     height: 320px;
@@ -352,6 +518,11 @@
 }
 
 @media (max-width: 380px) {
+  .hero-flip-card {
+    width: 200px;
+    height: 270px;
+  }
+
   .image-container {
     width: 200px;
     height: 270px;

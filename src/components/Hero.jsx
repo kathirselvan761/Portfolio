@@ -2,11 +2,23 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import { Download, ArrowRight, Mail } from "lucide-react";
+import Aurora from "./Aurora";
 import "./Hero.css";
+
 
 const Hero = () => {
   return (
     <section id="hero" className="hero-section">
+      {/* Aurora animated background */}
+      <div className="hero-aurora-bg">
+        <Aurora
+          colorStops={["#7cff67", "#B497CF", "#5227FF"]}
+          amplitude={1}
+          blend={0.5}
+          speed={0.6}
+        />
+      </div>
+
       {/* Background animated blobs */}
       <div className="blob blob-1"></div>
       <div className="blob blob-2"></div>
@@ -92,16 +104,48 @@ const Hero = () => {
           animate={{ opacity: 1, rotate: 0, scale: 1 }}
           transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
         >
-          <div className="glass-panel image-container">
-            <img
-              src="/img/photo2.jpeg"
-              alt="Kathirselvan V"
-              className="profile-img"
-            />
+          {/* Flip Card */}
+          <div className="hero-flip-card">
+            <div className="hero-flip-inner">
+
+              {/* Front — profile photo */}
+              <div className="hero-flip-front">
+                <div className="glass-panel image-container">
+                  <img
+                    src="/img/photo3.jpg"
+                    alt="Kathirselvan V"
+                    className="profile-img"
+                  />
+                </div>
+              </div>
+
+              {/* Back — About Me */}
+              <div className="hero-flip-back glass-panel">
+                <div className="flip-about-content">
+                  <p className="flip-about-greeting">👋 About Me</p>
+                  <h3 className="flip-about-name">Kathirselvan V</h3>
+                  <p className="flip-about-role">Full-Stack Developer</p>
+                  <p className="flip-about-bio">
+                    Passionate about building scalable, beautiful, and
+                    user-centric web applications. I love turning complex
+                    problems into intuitive designs.
+                  </p>
+                  <ul className="flip-about-highlights">
+                    <li>🎓 B.C.A</li>
+                    <li>💼 Full Stack Developer</li>
+                    <li>📍 Tamil Nadu, India</li>
+                    <li>🚀 Open to  Job and Internship</li>
+                    <li>🤝 Let's connect!</li>
+
+                  </ul>
+                </div>
+              </div>
+
+            </div>
           </div>
 
           {/* Floating glass elements */}
-          <div className="floating-card glass-panel react-badge">
+          {/* <div className="floating-card glass-panel react-badge">
             <i className="devicon-react-original colored"></i>
             <span>React.js</span>
           </div>
@@ -120,7 +164,7 @@ const Hero = () => {
           <div className="floating-card glass-panel php-badge">
             <i className="devicon-php-plain colored"></i>
             <span>PHP</span>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>

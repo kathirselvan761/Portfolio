@@ -63,15 +63,26 @@ const Projects = () => {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               whileHover={{ y: -10 }}
             >
-              <div className="project-image-container">
-                <img src={project.image} alt={project.title} className="actual-project-image" />
-                <div className="project-overlay">
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer" className="overlay-btn">
-                    <ExternalLink size={20} />
-                  </a>
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="overlay-btn">
-                    <FaGithub size={20} />
-                  </a>
+              <div className="flip-card-wrapper">
+                <div className="flip-card-inner">
+                  {/* Front: project screenshot */}
+                  <div className="flip-card-front">
+                    <img src={project.image} alt={project.title} className="actual-project-image" />
+                  </div>
+                  {/* Back: action buttons */}
+                  <div className="flip-card-back">
+                    <p className="flip-back-label">{project.title}</p>
+                    <div className="flip-back-actions">
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flip-action-btn demo">
+                        <ExternalLink size={18} />
+                        Live Demo
+                      </a>
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="flip-action-btn github">
+                        <FaGithub size={18} />
+                        GitHub
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
               
