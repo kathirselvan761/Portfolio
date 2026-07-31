@@ -232,12 +232,41 @@
   border: 1px solid rgba(138, 43, 226, 0.4);
   box-shadow: 0 0 40px rgba(106, 13, 173, 0.3);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 2rem 1.8rem;
   box-sizing: border-box;
   position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 80vh;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary-light) rgba(255, 255, 255, 0.03);
 }
+
+/* Custom modern scrollbar for .hero-flip-back */
+.hero-flip-back::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hero-flip-back::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+}
+
+.hero-flip-back::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-primary-light), var(--color-accent));
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.hero-flip-back::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-accent), var(--color-primary-light));
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
 
 .hero-flip-back::before {
   content: "";
