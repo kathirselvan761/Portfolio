@@ -37,6 +37,10 @@ const Navbar = () => {
     { name: 'Contact', to: 'contact' },
   ];
 
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className={`navbar ${scrolled ? 'scrolled glass-panel' : ''}`}>
       <div className="container nav-container">
@@ -49,6 +53,7 @@ const Navbar = () => {
             offset={-80}
             duration={500}
             className="logo-link"
+            onClick={handleLinkClick}
           >
             <span className="text-gradient">Portfolio.</span>
           </Link>
@@ -75,13 +80,21 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        <div className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X size={28} color="var(--color-primary-light)" /> : <Menu size={28} color="var(--color-text-primary)" />}
+        {/* Mobile Menu Toggle Button */}
+        <div 
+          className="mobile-toggle" 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle Navigation Menu"
+        >
+          {mobileMenuOpen ? (
+            <X size={28} color="var(--color-primary-light)" />
+          ) : (
+            <Menu size={28} color="var(--color-text-primary)" />
+          )}
         </div>
       </div>
 
-      {/* Mobile Menu Content */}
+      {/* Mobile Menu Slide Drawer */}
       <div className={`mobile-menu ${mobileMenuOpen ? 'open glass-panel' : ''}`}>
         <ul>
           {navLinks.map((link) => (
@@ -94,7 +107,7 @@ const Navbar = () => {
                 offset={-80}
                 duration={500}
                 className="nav-link"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={handleLinkClick}
               >
                 {link.name}
               </Link>
@@ -113,3 +126,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

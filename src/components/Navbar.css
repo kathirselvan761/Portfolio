@@ -4,24 +4,26 @@
   left: 0;
   width: 100%;
   max-width: 100vw;
-  z-index: 100;
+  z-index: 1000;
   transition: all 0.4s ease;
-  padding: 1.5rem 0;
+  padding: 1.2rem 0;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 .navbar.scrolled {
-  padding: 1rem 0;
+  padding: 0.9rem 0;
   background: var(--color-glass-bg);
   border-bottom: 1px solid var(--color-glass-border);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .logo span {
@@ -78,6 +80,8 @@
 .mobile-toggle {
   display: none;
   cursor: pointer;
+  padding: 0.2rem;
+  z-index: 1002;
 }
 
 .mobile-menu {
@@ -89,27 +93,24 @@
   cursor: pointer;
 }
 
-/* Body Scroll Lock when menu open */
 body.menu-open {
   overflow: hidden !important;
   height: 100vh;
-  position: relative;
 }
 
-/* Backdrop overlay styling */
 .mobile-menu-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(5, 5, 15, 0.6);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(9, 7, 28, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
-  z-index: 98;
+  z-index: 1000;
 }
 
 .mobile-menu-backdrop.open {
@@ -117,14 +118,16 @@ body.menu-open {
   pointer-events: auto;
 }
 
-@media (max-width: 768px) {
+/* ── 4. Navbar Responsive Specifications (Tablet & Mobile) ─ */
+@media (max-width: 1024px) {
   .desktop-menu {
     display: none;
   }
 
   .mobile-toggle {
-    display: block;
-    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mobile-menu {
@@ -133,12 +136,15 @@ body.menu-open {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 70%;
+    width: 75%;
+    max-width: 320px;
     height: 100vh;
     background: var(--color-bg-secondary);
-    padding: 100px 30px;
+    padding: 100px 30px 40px;
     transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index: 99;
+    z-index: 1001;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
+    border-left: 1px solid var(--color-glass-border);
   }
 
   .mobile-menu.open {
@@ -148,11 +154,15 @@ body.menu-open {
   .mobile-menu ul {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.8rem;
+  }
+
+  .mobile-menu .nav-link {
+    font-size: 1.25rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 425px) {
   .navbar {
     padding: 1rem 0;
   }
@@ -162,8 +172,8 @@ body.menu-open {
   }
 
   .mobile-menu {
-    width: 80%;
-    padding: 80px 20px;
+    width: 85%;
+    padding: 90px 24px;
   }
 
   .mobile-menu ul {
@@ -171,6 +181,8 @@ body.menu-open {
   }
 
   .mobile-menu .nav-link {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 }
+
+

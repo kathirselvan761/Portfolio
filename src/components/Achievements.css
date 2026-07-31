@@ -1,12 +1,13 @@
 .strengths-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 2rem;
   justify-content: center;
+  width: 100%;
 }
 
 .strength-card {
-  padding: 2.5rem 2rem;
+  padding: 2.5rem 1.8rem;
   text-align: center;
   background: linear-gradient(
     135deg,
@@ -20,6 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .strength-card::before {
@@ -45,8 +47,8 @@
 
 .strength-icon-container {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   background: var(--color-bg-primary);
   display: flex;
@@ -79,46 +81,49 @@
 }
 
 .strength-card:hover .strength-icon-container {
-  transform: scale(1.1) translateY(-5px);
+  transform: scale(1.08) translateY(-4px);
   color: white;
   border-color: var(--color-primary);
 }
 
 .strength-card:hover .icon-glow {
   opacity: 0.6;
-  width: 150%;
-  height: 150%;
+  width: 140%;
+  height: 140%;
 }
 
 .strength-title {
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   color: var(--color-text-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   font-family: var(--font-heading);
+  word-break: break-word;
 }
 
 .strength-desc {
   color: var(--color-text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
+  word-break: break-word;
 }
 
 @media (max-width: 768px) {
   .strengths-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
   }
 
   .strength-card {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.2rem;
   }
 
   .strength-icon-container {
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
   }
 
   .strength-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
   .strength-desc {
@@ -126,10 +131,10 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 425px) {
   .strengths-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.2rem;
   }
 
   .strength-card {
@@ -139,15 +144,15 @@
   .strength-icon-container {
     width: 60px;
     height: 60px;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
   }
 
   .strength-title {
     font-size: 1.1rem;
-    margin-bottom: 0.8rem;
   }
 
   .strength-desc {
     font-size: 0.85rem;
   }
 }
+

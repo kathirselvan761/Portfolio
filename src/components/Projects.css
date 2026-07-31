@@ -1,7 +1,8 @@
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
 }
 
 .project-card {
@@ -9,16 +10,18 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  height: 100%;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background: linear-gradient(
     160deg,
-    rgba(25, 25, 45, 0.7) 0%,
-    rgba(10, 10, 25, 0.9) 100%
+    rgba(25, 20, 50, 0.7) 0%,
+    rgba(10, 8, 28, 0.9) 100%
   );
+  box-sizing: border-box;
 }
 
 .project-card:hover {
-  box-shadow: 0 15px 45px rgba(106, 13, 173, 0.2);
+  box-shadow: 0 15px 45px rgba(106, 13, 173, 0.25);
   border-color: rgba(138, 43, 226, 0.4);
 }
 
@@ -49,7 +52,7 @@
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border-radius: 0; /* card already has radius */
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -71,8 +74,8 @@
 .flip-card-back {
   background: linear-gradient(
     135deg,
-    rgba(106, 13, 173, 0.85) 0%,
-    rgba(25, 25, 65, 0.97) 60%,
+    rgba(106, 13, 173, 0.88) 0%,
+    rgba(25, 20, 65, 0.97) 60%,
     rgba(65, 105, 225, 0.6) 100%
   );
   transform: rotateY(180deg);
@@ -95,6 +98,7 @@
   margin: 0;
   letter-spacing: 0.02em;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  word-break: break-word;
 }
 
 .flip-back-actions {
@@ -132,27 +136,19 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-.flip-action-btn.demo:hover {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
-}
-
-.flip-action-btn.github:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
 .project-content {
-  padding: 2rem;
+  padding: 1.8rem;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .project-title {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   color: var(--color-text-primary);
   margin-bottom: 0.8rem;
   line-height: 1.3;
+  word-break: break-word;
 }
 
 .project-desc {
@@ -160,6 +156,7 @@
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  word-break: break-word;
 }
 
 .project-features {
@@ -186,6 +183,7 @@
   font-size: 0.9rem;
   color: #c0c0d0;
   line-height: 1.4;
+  word-break: break-word;
 }
 
 .feature-icon {
@@ -200,7 +198,7 @@
   gap: 0.6rem;
   margin-top: auto;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 1.5rem;
+  padding-top: 1.2rem;
 }
 
 .tech-badge {
@@ -224,19 +222,32 @@
   display: none;
 }
 
+/* ── 9. Projects Grid Breakpoint Specifications ───────────── */
+
+/* Desktop (1920px) & Laptop (1440px / 1366px): 3 Cards */
+@media (min-width: 1025px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet (1024px & 768px): 2 Cards */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+  }
+}
+
+/* Mobile (425px, 375px, 320px): 1 Card */
 @media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
   .flip-card-wrapper {
     height: 200px;
-  }
-
-  .project-card:hover .flip-card-inner {
-    /* keep flip on mobile too — touch on card area works naturally */
-    transform: rotateY(180deg);
-  }
-
-  .flip-back-actions {
-    flex-direction: column;
-    gap: 0.7rem;
   }
 
   .project-links-mobile {
@@ -271,62 +282,17 @@
     border: 2px solid var(--color-primary-light);
   }
 
-  .mobile-link-btn.demo-btn:active {
-    transform: scale(0.98);
-  }
-
-  .mobile-link-btn.code-btn:active {
-    background: rgba(138, 43, 226, 0.15);
-    transform: scale(0.98);
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .project-card {
-    max-width: 100%;
-  }
-
-  .project-image-container {
-    height: 200px;
-  }
-
   .project-content {
     padding: 1.5rem;
   }
 
   .project-title {
-    font-size: 1.3rem;
-  }
-
-  .project-desc {
-    font-size: 0.9rem;
-  }
-
-  .project-features li {
-    font-size: 0.85rem;
-  }
-
-  .tech-badge {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.6rem;
+    font-size: 1.25rem;
   }
 }
 
-@media (max-width: 480px) {
-  .projects-grid {
-    max-width: 100%;
-    padding: 0 0.5rem;
-  }
-
-  .project-card {
-    border-radius: 15px;
-  }
-
-  .project-image-container {
+@media (max-width: 425px) {
+  .flip-card-wrapper {
     height: 180px;
   }
 
@@ -335,23 +301,12 @@
   }
 
   .project-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
   .project-desc {
-    font-size: 0.85rem;
-  }
-
-  .project-features h4 {
-    font-size: 0.9rem;
-  }
-
-  .project-features li {
-    font-size: 0.8rem;
-  }
-
-  .tech-badge {
-    font-size: 0.65rem;
-    padding: 0.25rem 0.5rem;
+    font-size: 0.88rem;
   }
 }
+
+

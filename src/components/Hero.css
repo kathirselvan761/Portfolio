@@ -4,35 +4,40 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 80px; /* offset for navbar */
+  padding-top: 110px;
+  padding-bottom: 70px;
   width: 100%;
   max-width: 100vw;
   box-sizing: border-box;
+  background: #09071c;
 }
 
-/* Aurora WebGL background */
+/* WebGL Aurora Background */
 .hero-aurora-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.55;
+  opacity: 0.5;
   pointer-events: none;
+  overflow: hidden;
+  background: transparent;
 }
 
-/* Background animated blobs */
+/* Ambient Blobs */
 .blob {
   position: absolute;
-  filter: blur(80px);
-  z-index: -1;
-  opacity: 0.4;
-  animation: float 10s ease-in-out infinite alternate;
+  filter: blur(90px);
+  z-index: 0;
+  opacity: 0.35;
+  animation: floatOrb 12s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
 .blob-1 {
   top: 10%;
-  left: -10%;
-  width: 400px;
-  height: 400px;
+  left: -5%;
+  width: 450px;
+  height: 450px;
   background: radial-gradient(
     circle,
     var(--color-primary-dark),
@@ -41,8 +46,8 @@
 }
 
 .blob-2 {
-  bottom: 10%;
-  right: -10%;
+  bottom: 5%;
+  right: -5%;
   width: 500px;
   height: 500px;
   background: radial-gradient(
@@ -50,51 +55,55 @@
     var(--color-secondary-light),
     transparent 70%
   );
-  animation-delay: -5s;
+  animation-delay: -6s;
 }
 
-@keyframes float {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(50px, -50px) scale(1.1);
-  }
-  100% {
-    transform: translate(-20px, 30px) scale(0.9);
-  }
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(35px, -35px) scale(1.06); }
+  100% { transform: translate(-20px, 25px) scale(0.94); }
 }
 
 .hero-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 4rem;
+  gap: 3.5rem;
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .hero-content {
   flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .greeting {
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   font-family: var(--font-heading);
+  font-weight: 600;
 }
 
+/* ── 5. Typography Scale Specifications ────────────────── */
+/* 1920px Desktop: 70px */
 .name {
-  font-size: 5rem;
+  font-size: 70px;
   font-weight: 800;
   line-height: 1.1;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   letter-spacing: -2px;
   background: linear-gradient(to right, #ffffff, #a0a0bd);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: white; /* Fallback */
+  color: white;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .subtitle {
@@ -102,30 +111,42 @@
   font-weight: 500;
   color: var(--color-text-secondary);
   margin-bottom: 1.5rem;
+  word-break: break-word;
 }
 
 .summary {
   font-size: 1.1rem;
   color: var(--color-text-secondary);
-  max-width: 600px;
+  max-width: 620px;
   margin-bottom: 2.5rem;
   line-height: 1.8;
+  word-break: break-word;
 }
 
 .cta-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.2rem;
+  width: 100%;
 }
 
-/* ── Hero Flip Card ──────────────────────────────── */
+/* ── 6. Profile Image Dimensions Specifications ───────── */
+.hero-image-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* 1920px Desktop: 430px */
 .hero-flip-card {
-  width: 350px;
-  height: 450px;
+  width: 430px;
+  height: 490px;
   perspective: 1200px;
   max-width: 100%;
   box-sizing: border-box;
-  overflow: visible;
 }
 
 .hero-flip-inner {
@@ -134,7 +155,6 @@
   height: 100%;
   transition: transform 0.9s cubic-bezier(0.4, 0.2, 0.2, 1);
   transform-style: preserve-3d;
-  overflow: visible;
 }
 
 .hero-flip-card:hover .hero-flip-inner {
@@ -149,24 +169,68 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 30px;
+  overflow: hidden; /* Fixes pseudo-element bleed */
 }
 
-.hero-flip-front {
-  /* pass-through — the inner image-container handles all styling */
+.image-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    145deg,
+    rgba(20, 16, 45, 0.7),
+    rgba(10, 8, 28, 0.9)
+  );
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-glass-border);
+  box-sizing: border-box;
+}
+
+.image-container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent, var(--color-accent), transparent 30%);
+  animation: rotateGlow 4s linear infinite;
+  z-index: 1;
+}
+
+.image-container::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: #09071c;
+  border-radius: 26px;
+  z-index: 2;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 26px;
+  z-index: 3;
+  position: relative;
 }
 
 .hero-flip-back {
   transform: rotateY(180deg);
   background: linear-gradient(
     145deg,
-    rgba(30, 10, 60, 0.92) 0%,
-    rgba(10, 10, 35, 0.97) 50%,
-    rgba(50, 20, 100, 0.88) 100%
+    rgba(30, 10, 60, 0.95) 0%,
+    rgba(10, 8, 30, 0.98) 50%,
+    rgba(50, 20, 100, 0.9) 100%
   );
   border: 1px solid rgba(138, 43, 226, 0.4);
-  box-shadow:
-    0 0 40px rgba(106, 13, 173, 0.3),
-    inset 0 0 30px rgba(106, 13, 173, 0.1);
+  box-shadow: 0 0 40px rgba(106, 13, 173, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -175,7 +239,6 @@
   position: relative;
 }
 
-/* Spinning accent border on back face */
 .hero-flip-back::before {
   content: "";
   position: absolute;
@@ -184,7 +247,7 @@
   width: 200%;
   height: 200%;
   background: conic-gradient(transparent, var(--color-primary), transparent 30%);
-  animation: rotate 4s linear infinite;
+  animation: rotateGlow 4s linear infinite;
   z-index: 0;
 }
 
@@ -195,7 +258,7 @@
   background: linear-gradient(
     145deg,
     rgba(25, 10, 50, 0.97) 0%,
-    rgba(10, 10, 30, 0.99) 100%
+    rgba(10, 8, 30, 0.99) 100%
   );
   border-radius: 26px;
   z-index: 1;
@@ -262,296 +325,155 @@
   border-radius: 4px;
 }
 
-.hero-image-wrapper {
-
-  flex: 1;
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-.image-container {
-  width: 350px;
-  height: 450px;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(
-    145deg,
-    rgba(20, 20, 35, 0.6),
-    rgba(10, 10, 25, 0.8)
-  );
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--color-glass-border);
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.image-container::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(transparent, var(--color-accent), transparent 30%);
-  animation: rotate 4s linear infinite;
-  z-index: 1;
-}
-
-.image-container::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  background: var(--color-bg-secondary);
-  border-radius: 26px;
-  z-index: 2;
-}
-
-.image-placeholder {
-  z-index: 3;
-  color: var(--color-text-secondary);
-  font-family: var(--font-heading);
-  text-align: center;
-  padding: 2rem;
-}
-
-.profile-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 26px;
-  z-index: 3;
-  position: relative;
-}
-
-.floating-card {
-  position: absolute;
-  padding: 0.8rem 1.2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-  z-index: 4;
-  animation: bob 3s ease-in-out infinite alternate;
-  max-width: calc(100% - 1rem);
-  box-sizing: border-box;
-}
-
-.react-badge {
-  top: 5%;
-  left: -15%;
-  color: #61dafb;
-  animation-delay: 0s;
-}
-
-.node-badge {
-  bottom: 5%;
-  left: -5%;
-  color: #339933;
-  animation-delay: -1.5s;
-}
-
-.mongo-badge {
-  top: 15%;
-  right: -20%;
-  color: #47A248;
-  animation-delay: -0.8s;
-}
-
-.mysql-badge {
-  top: 50%;
-  left: -25%;
-  color: #4479A1;
-  animation-delay: -2.2s;
-}
-
-.php-badge {
-  bottom: 15%;
-  right: -15%;
-  color: #777BB4;
-  animation-delay: -3.1s;
-}
-
-@keyframes rotate {
+@keyframes rotateGlow {
   100% {
     transform: rotate(1turn);
   }
 }
 
-@keyframes bob {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-15px);
-  }
-}
+/* ── 2 & 3. Responsive Hero Layout & Profile Sizes ─────── */
 
-@media (max-width: 992px) {
-  .hero-container {
-    flex-direction: column-reverse;
-    text-align: center;
-    padding-top: 2rem;
-  }
-
+/* 1440px / 1366px Laptop: Heading 60px, Profile 380px */
+@media (max-width: 1440px) {
   .name {
-    font-size: 3.5rem;
+    font-size: 60px;
   }
-
-  .subtitle {
-    font-size: 1.4rem;
-  }
-
-  .summary {
-    margin: 0 auto 2rem;
-  }
-
-  .cta-group {
-    justify-content: center;
-  }
-
-  .hero-image-wrapper {
-    margin-bottom: 3rem;
-  }
-
   .hero-flip-card {
-    width: 280px;
-    height: 380px;
-  }
-
-  .image-container {
-    width: 280px;
-    height: 380px;
-  }
-  
-  /* Bring badges closer on tablet */
-  .react-badge {
-    top: 0%;
-    left: -5%;
-  }
-  .node-badge {
-    bottom: 0%;
-    left: 0%;
-  }
-  .mongo-badge {
-    top: 10%;
-    right: -10%;
-  }
-  .mysql-badge {
-    top: 45%;
-    left: -15%;
-  }
-  .php-badge {
-    bottom: 10%;
-    right: -5%;
+    width: 380px;
+    height: 440px;
   }
 }
 
-@media (max-width: 480px) {
+/* 1024px / 768px Tablet: Heading 48px, Profile 320px */
+@media (max-width: 1024px) {
   .name {
-    font-size: 2.5rem;
+    font-size: 48px;
   }
-  .cta-group {
-    flex-direction: column;
-    width: 100%;
+  .hero-container {
+    gap: 2.5rem;
   }
-  .btn {
-    width: 100%;
+  .hero-flip-card {
+    width: 320px;
+    height: 380px;
+  }
+  .summary {
+    font-size: 1.05rem;
+  }
+}
+
+/* 768px Mobile Stack Transition */
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 90px;
+    padding-bottom: 50px;
   }
 
   .hero-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
     gap: 2rem;
   }
 
+  /* Single Column Stack Order: Image on top, then text */
+  .hero-image-wrapper {
+    order: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-content {
+    order: 2;
+    align-items: center;
+    width: 100%;
+  }
+
   .greeting {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .name {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 0.8rem;
   }
 
   .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.35rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
   }
 
   .summary {
     font-size: 1rem;
+    text-align: center;
+    margin: 0 auto 2rem;
+  }
+
+  .cta-group {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .cta-group a,
+  .cta-group button {
+    width: 100%;
   }
 
   .hero-flip-card {
-    width: 250px;
-    height: 320px;
-  }
-
-  .image-container {
-    width: 250px;
-    height: 320px;
-  }
-
-  .floating-card {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.75rem;
-    gap: 0.3rem;
-  }
-  
-  /* Pull badges tight to the image on mobile to avoid overflow cutoffs */
-  .react-badge {
-    top: -5%;
-    left: 0%;
-  }
-  .node-badge {
-    bottom: -5%;
-    left: 5%;
-  }
-  .mongo-badge {
-    top: 5%;
-    right: 0%;
-  }
-  .mysql-badge {
-    top: 50%;
-    left: -5%;
-  }
-  .php-badge {
-    bottom: 5%;
-    right: 0%;
+    width: 320px;
+    height: 380px;
   }
 }
 
-@media (max-width: 380px) {
+/* 425px & 375px Mobile: Heading 36px, Profile 240px */
+@media (max-width: 425px) {
+  .name {
+    font-size: 36px;
+  }
+
+  .greeting {
+    font-size: 1.15rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .summary {
+    font-size: 0.95rem;
+  }
+
   .hero-flip-card {
-    width: 200px;
-    height: 270px;
-  }
-
-  .image-container {
-    width: 200px;
-    height: 270px;
-  }
-
-  .floating-card {
-    padding: 0.35rem 0.6rem;
-    font-size: 0.65rem;
-    gap: 0.2rem;
-  }
-
-  .react-badge {
-    top: -6%;
-    left: 2%;
-  }
-  .node-badge {
-    bottom: -6%;
-    left: 4%;
-  }
-  .mongo-badge {
-    top: 4%;
-    right: 2%;
-  }
-  .mysql-badge {
-    top: 48%;
-    left: 2%;
-  }
-  .php-badge {
-    bottom: 4%;
-    right: 2%;
+    width: 240px;
+    height: 300px;
   }
 }
+
+/* 320px Small Mobile: Heading 30px, Profile 240px/220px */
+@media (max-width: 325px) {
+  .name {
+    font-size: 30px;
+  }
+
+  .greeting {
+    font-size: 1.05rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .summary {
+    font-size: 0.9rem;
+  }
+
+  .hero-flip-card {
+    width: 220px;
+    height: 280px;
+  }
+}
+
+

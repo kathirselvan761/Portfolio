@@ -1,30 +1,35 @@
 .skills-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
+  width: 100%;
 }
 
 .skill-category {
-  padding: 2.5rem 2rem;
+  padding: 2.2rem 1.5rem;
   background: linear-gradient(
     135deg,
-    rgba(20, 20, 35, 0.7) 0%,
-    rgba(10, 10, 25, 0.9) 100%
+    rgba(20, 16, 45, 0.7) 0%,
+    rgba(10, 8, 28, 0.9) 100%
   );
   border-top: 2px solid var(--color-glass-border);
+  border-radius: 20px;
   transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .skill-category:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(106, 13, 173, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 40px rgba(106, 13, 173, 0.25);
   border-top-color: var(--color-primary-light);
 }
 
 .category-title {
   text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  margin-bottom: 1.8rem;
   color: var(--color-accent);
   position: relative;
   display: block;
@@ -48,28 +53,29 @@
 .skills-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1.2rem;
   justify-content: center;
+  width: 100%;
 }
 
 .skill-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.8rem;
-  width: 90px;
+  gap: 0.6rem;
+  width: 80px;
   cursor: pointer;
 }
 
 .skill-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 20px;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
   background: var(--color-bg-secondary);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   box-shadow:
     inset 0px 4px 10px rgba(0, 0, 0, 0.5),
     0 0 15px rgba(255, 255, 255, 0.05);
@@ -78,9 +84,9 @@
 }
 
 .skill-item:hover .skill-icon {
-  background: rgba(138, 43, 226, 0.1);
+  background: rgba(138, 43, 226, 0.15);
   border-color: var(--color-primary-light);
-  box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.35);
 }
 
 .skill-item:hover i {
@@ -88,75 +94,53 @@
 }
 
 .skill-name {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--color-text-secondary);
   transition: color 0.3s ease;
   text-align: center;
+  word-break: break-word;
 }
 
 .skill-item:hover .skill-name {
   color: var(--color-text-primary);
 }
 
-@media (max-width: 768px) {
+/* ── 8. Skills Grid Breakpoints Specifications ───────────── */
+
+/* Desktop (1920px) & Laptop (1440px / 1366px): 4 Columns */
+@media (min-width: 1025px) {
   .skills-container {
-    grid-template-columns: 1fr;
-  }
-
-  .skill-category {
-    padding: 2rem 1.5rem;
-  }
-
-  .category-title {
-    font-size: 1.4rem;
-  }
-
-  .skills-grid {
-    gap: 1rem;
-  }
-
-  .skill-item {
-    width: 80px;
-  }
-
-  .skill-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 2rem;
-  }
-
-  .skill-name {
-    font-size: 0.85rem;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (max-width: 480px) {
+/* Tablet (1024px & 768px): 2 Columns */
+@media (max-width: 1024px) {
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+  }
+  .skill-category {
+    padding: 1.8rem 1.2rem;
+  }
+}
+
+/* Mobile (425px, 375px, 320px): 1 Column */
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+
   .skill-category {
     padding: 1.5rem 1rem;
   }
 
   .category-title {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .skills-grid {
-    gap: 0.8rem;
-    justify-content: center;
-  }
-
-  .skill-item {
-    width: 70px;
-  }
-
-  .skill-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.8rem;
-  }
-
-  .skill-name {
-    font-size: 0.8rem;
+    font-size: 1.25rem;
+    margin-bottom: 1.4rem;
   }
 }
+
+

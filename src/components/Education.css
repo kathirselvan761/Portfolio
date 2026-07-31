@@ -4,11 +4,15 @@
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .timeline {
   position: relative;
   padding-left: 3rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .timeline::before {
@@ -29,6 +33,8 @@
 .timeline-item {
   position: relative;
   margin-bottom: 3rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .timeline-item:last-child {
@@ -74,6 +80,9 @@
     rgba(20, 20, 35, 0.7),
     rgba(15, 15, 30, 0.85)
   );
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .timeline-content::before {
@@ -95,6 +104,7 @@
   align-items: flex-start;
   margin-bottom: 0.5rem;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .degree {
@@ -102,10 +112,11 @@
   color: var(--color-text-primary);
   font-family: var(--font-heading);
   line-height: 1.3;
+  word-break: break-word;
 }
 
 .period-badge {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   background: rgba(138, 43, 226, 0.15);
@@ -123,6 +134,7 @@
   color: var(--color-accent);
   margin-bottom: 0.8rem;
   font-weight: 500;
+  word-break: break-word;
 }
 
 .location {
@@ -132,6 +144,7 @@
   color: var(--color-text-secondary);
   font-size: 0.9rem;
   margin-bottom: 1.2rem;
+  word-break: break-word;
 }
 
 .edu-description {
@@ -140,11 +153,13 @@
   font-size: 0.95rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-top: 1rem;
+  word-break: break-word;
 }
 
 .resume-section {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .resume-box {
@@ -158,46 +173,63 @@
     rgba(20, 20, 35, 0.9),
     rgba(10, 10, 25, 0.8)
   );
+  box-sizing: border-box;
 }
 
 .resume-box h3 {
   font-size: 1.8rem;
   color: var(--color-text-primary);
   margin-bottom: 1rem;
+  word-break: break-word;
 }
 
 .resume-box p {
   color: var(--color-text-secondary);
   line-height: 1.6;
   margin-bottom: 2rem;
+  word-break: break-word;
 }
 
 .resume-btn {
   padding: 1rem 2.5rem;
   font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* ── Responsive Education Breakpoints ── */
 @media (max-width: 768px) {
-  .timeline-header {
-    flex-direction: column;
-  }
-
-  .degree {
-    font-size: 1.3rem;
+  .education-container {
+    gap: 3rem;
   }
 
   .timeline {
     padding-left: 2rem;
   }
 
+  .timeline::before {
+    left: 9px;
+  }
+
   .timeline-dot {
     left: -2rem;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .degree {
+    font-size: 1.25rem;
   }
 
   .timeline-content {
-    padding: 1.5rem;
+    padding: 1.4rem;
   }
 
   .institution {
@@ -209,31 +241,39 @@
   }
 
   .resume-box {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.2rem;
   }
 
   .resume-box h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .resume-btn {
+    width: 100%;
   }
 }
 
-@media (max-width: 480px) {
-  .education-container {
-    gap: 2.5rem;
-  }
-
+@media (max-width: 425px) {
   .timeline {
     padding-left: 1.5rem;
   }
 
+  .timeline::before {
+    left: 6px;
+  }
+
   .timeline-dot {
     left: -1.5rem;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .dot-icon {
+    display: none;
   }
 
   .timeline-content {
-    padding: 1.2rem;
+    padding: 1.1rem;
   }
 
   .degree {
@@ -241,26 +281,15 @@
   }
 
   .institution {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .location {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .edu-description {
     font-size: 0.85rem;
   }
-
-  .resume-box {
-    padding: 1.5rem 1rem;
-  }
-
-  .resume-box h3 {
-    font-size: 1.3rem;
-  }
-
-  .resume-box p {
-    font-size: 0.9rem;
-  }
 }
+

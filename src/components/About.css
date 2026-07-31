@@ -1,7 +1,8 @@
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2.5rem;
+  width: 100%;
 }
 
 .about-text {
@@ -11,12 +12,15 @@
     rgba(20, 20, 35, 0.7),
     rgba(10, 10, 25, 0.9)
   );
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .about-text h3 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   color: var(--color-accent);
+  word-break: break-word;
 }
 
 .about-text p {
@@ -24,6 +28,7 @@
   margin-bottom: 1rem;
   line-height: 1.8;
   font-size: 1.1rem;
+  word-break: break-word;
 }
 
 .about-text p:last-child {
@@ -37,8 +42,9 @@
 
 .about-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+  width: 100%;
 }
 
 .about-card {
@@ -49,10 +55,11 @@
     box-shadow 0.4s ease;
   background: var(--color-glass-bg);
   cursor: default;
+  box-sizing: border-box;
 }
 
 .about-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
   border-color: var(--color-primary-light);
 }
 
@@ -73,7 +80,7 @@
 .about-card:hover .icon-wrapper {
   background: var(--color-primary);
   box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .about-icon {
@@ -89,17 +96,19 @@
   font-size: 1.3rem;
   margin-bottom: 1rem;
   color: var(--color-text-primary);
+  word-break: break-word;
 }
 
 .about-card p {
   color: var(--color-text-secondary);
   font-size: 1rem;
+  word-break: break-word;
 }
 
-/* Responsive Design */
+/* ── Responsive About Rules ── */
 @media (max-width: 1024px) {
   .about-cards {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
   }
 }
@@ -110,11 +119,11 @@
   }
 
   .about-text {
-    padding: 2rem 1.5rem;
+    padding: 1.8rem 1.2rem;
   }
 
   .about-text h3 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
   .about-text p {
@@ -123,58 +132,25 @@
 
   .about-cards {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.2rem;
   }
 
   .about-card {
-    padding: 1.5rem;
-  }
-
-  .icon-wrapper {
-    width: 60px;
-    height: 60px;
-  }
-
-  .about-card h4 {
-    font-size: 1.2rem;
-  }
-
-  .about-card p {
-    font-size: 0.95rem;
+    padding: 1.5rem 1rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 425px) {
   .about-text {
-    padding: 1.5rem 1rem;
+    padding: 1.2rem 1rem;
   }
 
   .about-text h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
+    font-size: 1.3rem;
   }
 
   .about-text p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .about-card {
-    padding: 1.2rem;
-  }
-
-  .icon-wrapper {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 1rem;
-  }
-
-  .about-card h4 {
-    font-size: 1.1rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .about-card p {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
   }
 }
+
