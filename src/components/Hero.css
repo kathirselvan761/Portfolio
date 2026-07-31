@@ -1,11 +1,13 @@
 .hero-section {
   min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
-  padding-top: 110px;
-  padding-bottom: 70px;
+  padding-top: 90px;
+  padding-bottom: 20px;
   width: 100%;
   max-width: 100vw;
   box-sizing: border-box;
@@ -72,6 +74,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
+  max-height: calc(100vh - 100px);
 }
 
 .hero-content {
@@ -90,7 +93,6 @@
 }
 
 /* ── 5. Typography Scale Specifications ────────────────── */
-/* 1920px Desktop: 70px */
 .name {
   font-size: 70px;
   font-weight: 800;
@@ -130,7 +132,7 @@
   width: 100%;
 }
 
-/* ── 6. Profile Image Dimensions Specifications ───────── */
+/* ── 6. Profile Image & Flip Card Single Screen Specs ─── */
 .hero-image-wrapper {
   flex: 1;
   position: relative;
@@ -140,10 +142,10 @@
   width: 100%;
 }
 
-/* 1920px Desktop: 430px */
 .hero-flip-card {
   width: 430px;
   height: 490px;
+  max-height: calc(100vh - 120px);
   perspective: 1200px;
   max-width: 100%;
   box-sizing: border-box;
@@ -169,7 +171,7 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 30px;
-  overflow: hidden; /* Fixes pseudo-element bleed */
+  overflow: hidden;
 }
 
 .image-container {
@@ -221,7 +223,9 @@
   position: relative;
 }
 
-.hero-flip-back {
+/* Single Screen Flip Back Glass Panel */
+.hero-flip-back,
+.hero-flip-back.glass-panel {
   transform: rotateY(180deg);
   background: linear-gradient(
     145deg,
@@ -235,37 +239,45 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 2rem 1.8rem;
+  padding: 1.8rem 1.4rem;
   box-sizing: border-box;
   position: relative;
+  height: 100%;
+  max-height: calc(100vh - 120px);
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 80vh;
   scroll-behavior: smooth;
+
+  /* Firefox */
   scrollbar-width: thin;
   scrollbar-color: var(--color-primary-light) rgba(255, 255, 255, 0.03);
 }
 
-/* Custom modern scrollbar for .hero-flip-back */
-.hero-flip-back::-webkit-scrollbar {
+/* Custom Scrollbar for Chrome, Edge, Brave, and Safari */
+.hero-flip-back::-webkit-scrollbar,
+.hero-flip-back.glass-panel::-webkit-scrollbar {
   width: 6px;
 }
 
-.hero-flip-back::-webkit-scrollbar-track {
+.hero-flip-back::-webkit-scrollbar-track,
+.hero-flip-back.glass-panel::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.03);
   border-radius: 10px;
 }
 
-.hero-flip-back::-webkit-scrollbar-thumb {
+.hero-flip-back::-webkit-scrollbar-thumb,
+.hero-flip-back.glass-panel::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--color-primary-light), var(--color-accent));
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
-.hero-flip-back::-webkit-scrollbar-thumb:hover {
+.hero-flip-back::-webkit-scrollbar-thumb:hover,
+.hero-flip-back.glass-panel::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--color-accent), var(--color-primary-light));
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
 }
+
 
 
 .hero-flip-back::before {
