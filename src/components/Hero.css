@@ -248,35 +248,19 @@
   overflow-x: hidden;
   scroll-behavior: smooth;
 
-  /* Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-primary-light) rgba(255, 255, 255, 0.03);
+  /* Hide Scrollbar for Firefox, IE, and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* Custom Scrollbar for Chrome, Edge, Brave, and Safari */
+/* Hide Scrollbar for Chrome, Safari, Edge, and Brave */
 .hero-flip-back::-webkit-scrollbar,
 .hero-flip-back.glass-panel::-webkit-scrollbar {
-  width: 6px;
+  display: none;
+  width: 0;
+  height: 0;
 }
 
-.hero-flip-back::-webkit-scrollbar-track,
-.hero-flip-back.glass-panel::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 10px;
-}
-
-.hero-flip-back::-webkit-scrollbar-thumb,
-.hero-flip-back.glass-panel::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-primary-light), var(--color-accent));
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-}
-
-.hero-flip-back::-webkit-scrollbar-thumb:hover,
-.hero-flip-back.glass-panel::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--color-accent), var(--color-primary-light));
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
-}
 
 
 
